@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "cripweb": "^1.0.0"
+  }
+}

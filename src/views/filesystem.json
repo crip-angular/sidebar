@@ -1,0 +1,16 @@
+{
+    "filesystem": [
+        {"name": "assets", "type": "dir", "children": [
+            {"name": "css", "type": "dir", "children": [
+                {"name": "style.css", "type": "file"}
+            ]},
+            {"name": "js", "type": "dir", "children": [
+                {"name": "jquery.js", "type": "file"},
+                {"name": "script.js", "type": "file"}
+            ]}
+        ]},
+        {"name": "index.html", "type": "file"},
+        {"name": "about.html", "type": "file"},
+        {"name": "contact.html", "type": "file"}
+    ]
+}
