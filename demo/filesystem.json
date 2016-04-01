@@ -6,11 +6,13 @@
             ]},
             {"name": "js", "type": "dir", "children": [
                 {"name": "jquery.js", "type": "file"},
+                {"name": "angular.js", "type": "file"},
                 {"name": "script.js", "type": "file"}
             ]}
         ]},
         {"name": "index.html", "type": "file"},
         {"name": "about.html", "type": "file"},
-        {"name": "contact.html", "type": "file"}
+        {"name": "contact.html", "type": "file"},
+        {"name": "products.html", "type": "file"}
     ]
 }

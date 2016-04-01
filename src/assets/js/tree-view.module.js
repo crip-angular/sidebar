@@ -2,6 +2,8 @@
 	
     'use strict';
 
-    crip.sidebar = ng.module('crip.sidebar', []);
+    crip.treeView = ng.module('crip.tree-view', [
+		'crip.treeView.templates'
+    ]);
 
 })(angular, window.crip || (window.crip = {}));

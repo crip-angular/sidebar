@@ -1,0 +1,6 @@
+<i class="fa fa-folder fa-lg" ng-if="node.type == 'dir'"></i>
+<i class="fa fa-file-o fa-lg" ng-if="node.type == 'file'"></i>
+{{ node.name }}
+<ul ng-if="node.type == 'dir' && node.children">
+    <li class="{{ node.type }}" ng-repeat="node in node.children" ng-include="'/crip/tree-view/node.html'"></li>
+</ul>

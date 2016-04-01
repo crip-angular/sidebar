@@ -1,7 +1,7 @@
 (function (ng, crip) {
     'use strict';
 
-    crip.sidebar
+    crip.treeView
         .controller('TreeController', TreeController);
 
     TreeController.$inject = ['$scope', '$http'];
@@ -12,7 +12,7 @@
      */
     function TreeController($scope, $http) {
         // Loads filesystem tree as JSON
-        $http.get('filesystem.json').then(function(response) {
+        $http.get('demo/filesystem.json').then(function(response) {
             $scope.tree = response.data.filesystem;
         });
     }
