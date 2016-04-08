@@ -3,16 +3,31 @@
 <head>
     <meta charset="utf-8">
     <title>Crip Tree View</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../build/css/style.min.css">
 </head>
 <body>
-    <div ng-app="crip.tree-view">
+    <div ng-app="app" ng-controller="Controller">
         <tree></tree>
     </div>
 
     <!-- Include scripts -->
     <script src="../build/js/vendor.min.js"></script>
     <script src="../build/js/app.min.js"></script>
+    <script>
+        (function (ng, crip) {
+            crip.app = ng.module('app', ['crip.tree-view']);
+            crip.app.controller('Controller', Controller);
+            Controller.$inject = ['$http', '$scope'];
+
+            function Controller($http, $scope) {
+                // Loads filesystem tree from file
+                $http.get('demo/filesystem.json').then(function(response) {
+                    $scope.tree = response.data.filesystem;
+                });
+            }
+        }) (angular, crip);
+    </script>
+
 </body>
 </html>

@@ -6,3 +6,11 @@
 	font-size: 13px;
 	padding: 2px;
 }
+
+.tree li.dir > ul {
+	display: block;
+}
+
+.tree li.dir.opened > ul{
+	display: block;
+}

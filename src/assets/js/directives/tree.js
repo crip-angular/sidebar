@@ -7,16 +7,21 @@
 
     tree.$inject = ['$log', '$document'];
 
-
+    /**
+     * Tree directive
+     *
+     */
     function tree($log, $document) {
-        
+
         return {
             restrict: 'E',
             templateUrl: '/crip/tree-view/tree.html',
             link: link
         };
 
-        function link(scope, element, attr) {
+
+        function link(scope, element, attr, ctrls) {
+
 
 
         }
