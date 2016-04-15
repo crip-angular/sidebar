@@ -1,16 +1,30 @@
 @import "../../../bower_components/components-font-awesome/scss/font-awesome";
 
-.tree li{
-	border: 0;
-	list-style: none;
-	font-size: 13px;
-	padding: 2px;
+.tree {
+    border: 1px solid #ccc;
+    width: 200px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: Arial;
+    font-size: 11px;
 }
 
-.tree li.dir > ul {
-	display: block;
+.tree li {
+    border: 0;
+    list-style: none;
+    font-size: 13px;
+    padding: 2px;
 }
 
-.tree li.dir.opened > ul{
-	display: block;
+.tree li a {
+    color: #555;
+    text-decoration: none;
+}
+
+.tree li.dir ul {
+    display: none;
+}
+
+.tree li.dir .opened {
+    display: block;
 }

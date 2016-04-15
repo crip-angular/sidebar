@@ -8,7 +8,7 @@
 </head>
 <body>
     <div ng-app="app" ng-controller="Controller">
-        <tree></tree>
+        <tree data="data">Loading...</tree>
     </div>
 
     <!-- Include scripts -->
@@ -16,18 +16,23 @@
     <script src="../build/js/app.min.js"></script>
     <script>
         (function (ng, crip) {
-            crip.app = ng.module('app', ['crip.tree-view']);
-            crip.app.controller('Controller', Controller);
-            Controller.$inject = ['$http', '$scope'];
 
-            function Controller($http, $scope) {
+            /**
+             * Module             
+             */
+            crip.app = ng.module('app', ['crip.tree-view']);
+
+            /**
+             * Controller             
+             */
+            crip.app.controller('Controller', ['$http', '$scope', function ($http, $scope) {
                 // Loads filesystem tree from file
                 $http.get('demo/filesystem.json').then(function(response) {
-                    $scope.tree = response.data.filesystem;
+                    $scope.data = response.data.filesystem;
                 });
-            }
+            }]);
+
         }) (angular, crip);
     </script>
-
 </body>
 </html>
