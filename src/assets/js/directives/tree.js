@@ -1,4 +1,4 @@
-(function (ng, crip) {  
+(function(ng, crip) {  
 
     'use strict';
 
@@ -18,24 +18,37 @@
             scope: {
                 tree: '=cripTree'
             },
-            templateUrl: '/crip/tree-view/tree.html',
+            templateUrl: templateUrl,
             link: link
         };
+
+        /**
+         * Template URL
+         *
+         */
+        function templateUrl(element, attrs) {
+            return attrs.templateUrl || '/crip/tree-view/tree.html';
+        }
 
         /**
          * Link
          *
          */
         function link(scope, element, attr, ctrls) {
-            element.on('click', function (e) {        
-                var li = (e.target.tagName == 'LI')
-                    ? ng.element(e.target)
-                    : ng.element(e.target.parentNode);
-                if (li.hasClass('dir')) {
-                    li.find('i').eq(0).toggleClass('fa-folder fa-folder-open');
-                    li.find('ul').eq(0).toggleClass('opened');
+            // Open or close directory
+            scope.openClose = function(e) {
+                // Select list item element
+                var node = (e.target.tagName == 'A')
+                    ? e.target.parentNode
+                    : e.target.parentNode.parentNode;
+
+                // Checks if clicked on directory node
+                if (node.classList.contains('dir')) {
+                    // Shows/hides directory contents
+                    ng.element(node.querySelector('.fa')).toggleClass('fa-folder fa-folder-open');
+                    ng.element(node.querySelector('ul')).toggleClass('opened');
                 }
-            });
+            };
         }
 
     }
