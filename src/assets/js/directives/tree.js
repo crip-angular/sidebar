@@ -19,7 +19,7 @@
                 data: '='
             },
             templateUrl: '/crip/tree-view/tree.html',
-            link: link,
+            link: link
         };
 
         /**

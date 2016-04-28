@@ -3,7 +3,7 @@
     'use strict';
 
     crip.treeView = ng.module('crip.tree-view', [
-		'crip.treeView.templates'
+		'crip.tree-view.templates'
     ]);
 
 })(angular, window.crip || (window.crip = {}));

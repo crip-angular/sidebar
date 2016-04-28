@@ -1,59 +1,38 @@
-var gulp = require('gulp');
-var crip = require('cripweb');
-var templateCache = require('gulp-angular-templatecache');
-
-crip.scriptsConfig({
-    dest: 'build/js',
-    minify: true
-});
-
-crip.scripts([
-        '/jquery/dist/jquery.js',
-        '/angular/angular.js',
-        '/angular-resource/angular-resource.js',
-        '/crip-angular-core/build/crip-core.js'
-    ],
-    'vendor',
-    'scripts-vendor',
-    'bower_components'
-);
-
-crip.scripts(['**/*.js'],
-    'app',
-    'scripts-app',
-    'src');
-
-crip.sass('src/assets/sass/style.scss',
-    'src/assets/sass/**/*.scss',
-    'compile-sass',
-    'style',
-    'build/css');
+var gulp = require('gulp'),
+    cripweb = require('cripweb'),
+    templateCache = require('gulp-angular-templatecache');
 
 
 gulp.task('watch-angular-templates', function () {
     return gulp.src('src/templates/**/*.html')
         .pipe(templateCache('templates.js', {
-            module: 'crip.treeView.templates',
+            module: 'crip.tree-view.templates',
             standalone: true,
             base: function (file) {
-                return '/crip/tree-view/' + file.path.replace(file.base, '')
+                return '/crip/tree-view/' + file.path.replace(file.base, '');
             }
         }))
         .pipe(gulp.dest('src/templates'));
 });
 
 
-crip.addWatch(
-    './src/templates/**/*.html',
-    'watch-angular-templates',
-    gulp
-);
+cripweb(gulp)(function(crip) {
 
+    // Build vendor scripts
+    crip.scripts('vendor', ['angular/angular.js'], 'build/js', 'vendor', 'bower_components');
+    
+    // Build application scripts
+    crip.scripts('app', ['**/*.js'], 'build/js', 'app', 'src');
 
-crip.copy('src/views/**/*.*', 'build', 'copy-views');
-crip.copy('bower_components/components-font-awesome/fonts/**/*.*', 'build/fonts', 'copy-fonts');
+    // Compile SASS to CSS
+    crip.sass('app', 'tree.scss', 'build/css', 'style', '**/*.scss', 'src/assets/sass');
 
-gulp.task('default', function () {
-    crip.gulp.start('crip-default');
-    crip.watch();
+    // Copy font files
+    crip.copy('fonts', 'bower_components/components-font-awesome/fonts/**/*.*', 'build/fonts');
+
+    // Watch for code changes
+    crip.watch('templates', 'src/templates/**/*.html', 'watch-angular-templates');
+    crip.watch('scripts', 'src/**/*.js', 'scripts-app');
+    crip.watch('styles', 'src/assets/sass/**/*.scss', 'sass-app');
+
 });
