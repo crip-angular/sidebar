@@ -5,10 +5,14 @@
     <title>Crip Tree View</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../build/css/style.min.css">
+    <style>
+        body{ margin:40px; }
+        .tree { width: 200px; border: 1px dotted #ccc; padding: 20px; }
+    </style>
 </head>
 <body>
     <div ng-app="app" ng-controller="Controller">
-        <tree data="data">Loading...</tree>
+        <div crip-tree="tree">Loading...</div>
     </div>
 
     <!-- Include scripts -->
@@ -28,7 +32,7 @@
             crip.app.controller('Controller', ['$http', '$scope', function ($http, $scope) {
                 // Loads filesystem tree from file
                 $http.get('demo/filesystem.json').then(function(response) {
-                    $scope.data = response.data.filesystem;
+                    $scope.tree = response.data.filesystem;
                 });
             }]);
 

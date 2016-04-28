@@ -3,7 +3,7 @@
     'use strict';
 
     crip.treeView
-        .directive('tree', tree);
+        .directive('cripTree', tree);
 
     tree.$inject = ['$log', '$document'];
 
@@ -14,9 +14,9 @@
     function tree($log, $document) {
 
         return {
-            restrict: 'EA',        
+            restrict: 'A',
             scope: {
-                data: '='
+                tree: '=cripTree'
             },
             templateUrl: '/crip/tree-view/tree.html',
             link: link

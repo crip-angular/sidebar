@@ -1,12 +1,7 @@
 @import "../../../bower_components/components-font-awesome/scss/font-awesome";
 
 .tree {
-    border: 1px solid #ccc;
-    width: 200px;
-    margin: 20px auto;
-    padding: 20px;
-    font-family: Arial;
-    font-size: 11px;
+    padding: 0;
 }
 
 .tree li {
@@ -22,9 +17,13 @@
 }
 
 .tree li.dir ul {
-    display: none;
+    max-height: 0;    
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+
 }
 
 .tree li.dir .opened {
-    display: block;
+    max-height: 500px;
+    transition: max-height 0.4s ease-in;
 }
